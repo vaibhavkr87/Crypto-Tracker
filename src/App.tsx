@@ -18,10 +18,12 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">📈 Real-Time Crypto Price Tracker</h1>
-      <CryptoTable data={crypto} />
-    </div>
+    <div className="p-4 sm:p-6 md:p-8 max-w-screen-xl mx-auto">
+    <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4 text-center">
+      📈 Real-Time Crypto Price Tracker
+    </h1>
+    <CryptoTable data={crypto} />
+  </div>
   );
 };
 
