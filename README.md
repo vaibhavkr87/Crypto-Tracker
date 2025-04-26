@@ -4,7 +4,7 @@ Here is the uploaded Demo Video Link - https://drive.google.com/file/d/1J5aPG43l
 
 
 Setup instruction 
-Clone the Repository git clone https://github.com/vaibhavkr87/crypto-tracker.git
+Clone the Repository git clone https://github.com/vaibhavkr87/Crypto-Tracker.git
 Then cd crypto-tracker
 Install Dependencies npm install 
 Start the Development Server npm run dev
