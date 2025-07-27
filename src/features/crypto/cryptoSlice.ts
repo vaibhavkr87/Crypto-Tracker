@@ -19,16 +19,23 @@ export interface Crypto {
 
 interface CryptoState {
   data: Crypto[];
+  searchTerm: string; // 🆕 Add this
 }
 
 const initialState: CryptoState = {
   data: [],
+  searchTerm: "", // 🆕
 };
+
 
 const cryptoSlice = createSlice({
   name: 'crypto',
   initialState,
   reducers: {
+    // 🆕 Action to set the search term
+    setSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload;
+    },
     setCryptoData: (state, action: PayloadAction<Crypto[]>) => {
       state.data = action.payload;
     },
@@ -45,5 +52,5 @@ const cryptoSlice = createSlice({
   },
 });
 
-export const { setCryptoData, updateCryptoPrices } = cryptoSlice.actions;
+export const { setSearchTerm, setCryptoData, updateCryptoPrices } = cryptoSlice.actions;
 export default cryptoSlice.reducer;

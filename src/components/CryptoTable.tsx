@@ -7,35 +7,38 @@ interface Props {
 
 const CryptoTable: React.FC<Props> = ({ data }) => {
   return (
-    <div className="overflow-x-auto">
-      <table className="min-w-full border">
-        <thead className="bg-gray-100">
+    <div className="overflow-x-auto rounded-xl border border-gray-200 shadow-sm">
+      <table className="min-w-full table-auto border text-xs sm:text-sm md:text-base">
+        <thead className="bg-gray-100 text-gray-700 uppercase text-xs sm:text-sm">
           <tr>
-            <th></th>
-            <th>#</th>
-            <th>Name</th>
-            <th>Symbol</th>
-            <th>Price</th>
-            <th>1h %</th>
-            <th>24h %</th>
-            <th>7d %</th>
-            <th>Market Cap</th>
-            <th>24h Volume</th>
-            <th>Circulating Supply</th>
-            <th>7D chart</th>
+            <th className="px-4 py-3"></th>
+            <th className="px-4 py-3">#</th>
+            <th className="px-4 py-3 text-left">Name</th>
+            <th className="px-4 py-3">Symbol</th>
+            <th className="px-4 py-3">Price</th>
+            <th className="px-4 py-3">1hr %</th>
+            <th className="px-4 py-3">24h %</th>
+            <th className="px-4 py-3">7d %</th>
+            <th className="px-4 py-3">Market Cap</th>
+            <th className="px-4 py-3">24h Volume</th>
+            <th className="px-4 py-3">Supply</th>
+            <th className="px-4 py-3">7D Chart</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-gray-200">
           {data.map((coin, index) => (
-            <tr key={coin.id} className="text-center border-t">
-              <td>
+            <tr
+              key={coin.id}
+              className="text-center hover:bg-gray-50 transition h-20"
+            >
+              <td className="px-2 py-3 align-middle">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="ml-3 size-4"
+                  className="size-4 text-yellow-400 mx-auto"
                 >
                   <path
                     strokeLinecap="round"
@@ -44,55 +47,74 @@ const CryptoTable: React.FC<Props> = ({ data }) => {
                   />
                 </svg>
               </td>
-              <td>{index + 1}</td>
-              <td className="p-2">
-                <span className="flex items-center justify-self-center">
-                  <img
-                    src={coin.logo}
-                    alt={coin.name}
-                    className="w-6 h-6 mx-auto mr-3"
-                  />
-                  {coin.name}
-                </span>
+
+              <td className="px-2 py-3 align-middle">{index + 1}</td>
+
+              <td>
+                <div>
+                  <div>
+                    <img
+                      src={coin.logo}
+                      alt={coin.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span>{coin.name}</span>
+                </div>
               </td>
 
-              <td>{coin.symbol}</td>
-              <td>${coin.price?.toLocaleString()}</td>
+              <td className="px-2 py-3 align-middle">{coin.symbol}</td>
+              <td className="px-2 py-3 align-middle">
+                ${coin.price?.toLocaleString()}
+              </td>
+
               <td
-                className={
+                className={`px-2 py-3 font-medium align-middle ${
                   coin.change1h > 0 ? "text-green-500" : "text-red-500"
-                }
+                }`}
               >
                 {coin.change1h}%
               </td>
+
               <td
-                className={
+                className={`px-2 py-3 font-medium align-middle ${
                   coin.change24h > 0 ? "text-green-500" : "text-red-500"
-                }
+                }`}
               >
                 {coin.change24h}%
               </td>
+
               <td
-                className={
+                className={`px-2 py-3 font-medium align-middle ${
                   coin.change7d > 0 ? "text-green-500" : "text-red-500"
-                }
+                }`}
               >
                 {coin.change7d}%
               </td>
-              <td>${coin.marketCap.toLocaleString()}</td>
-              <td>
-                <span>
-                  <p>${coin.volume24h.toLocaleString()}</p>
-                  <p>{coin.data}</p>
-                </span>
+
+              <td className="px-2 py-3 align-middle">
+                ${coin.marketCap.toLocaleString()}
               </td>
-              <td>{coin.circulatingSupply.toLocaleString()}</td>
-              <td className="p-2">
-                <img
-                  src={coin.chartImage}
-                  alt={coin.name}
-                  className="object-contain h-12 w-auto flex justify-center pl-20 items-center"
-                />
+
+              <td className="px-2 py-3 align-middle">
+                <div className="flex flex-col items-center gap-1">
+                  <span>${coin.volume24h.toLocaleString()}</span>
+                  <span className="text-xs text-gray-400">{coin.data}</span>
+                </div>
+              </td>
+
+              <td className="px-2 py-3 align-middle">
+                {coin.circulatingSupply.toLocaleString()}
+              </td>
+
+              <td className="px-2 py-3 align-middle">
+                <div className="w-20 h-8 mx-auto">
+                  <img
+                    src={coin.chartImage}
+                    alt={`${coin.name} chart`}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
               </td>
             </tr>
           ))}
